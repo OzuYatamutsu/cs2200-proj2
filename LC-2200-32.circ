@@ -669,6 +669,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="text" val="00 = RX"/>
     </comp>
     <comp loc="(300,140)" name="ALU"/>
+    <comp loc="(200,530)" name="Intergenerator"/>
     <comp lib="2" loc="(870,250)" name="Multiplexer">
       <a name="facing" val="south"/>
       <a name="select" val="2"/>
@@ -1015,6 +1016,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="output" val="true"/>
       <a name="label" val="WrREG"/>
       <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(210,70)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="INT_ENA"/>
     </comp>
     <comp lib="4" loc="(470,190)" name="ROM">
       <a name="addrWidth" val="6"/>
