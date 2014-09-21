@@ -335,6 +335,10 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(240,670)" name="Tunnel">
       <a name="label" val="LdPC"/>
     </comp>
+    <comp lib="0" loc="(210,480)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="Clock"/>
+    </comp>
     <comp lib="1" loc="(680,350)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
@@ -595,6 +599,10 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="Opcode"/>
     </comp>
     <comp lib="0" loc="(440,630)" name="Clock"/>
+    <comp lib="4" loc="(230,460)" name="Register">
+      <a name="width" val="1"/>
+      <a name="label" val="IE"/>
+    </comp>
     <comp lib="0" loc="(440,280)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="WrREG"/>
@@ -613,10 +621,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="4" loc="(390,100)" name="Register">
       <a name="width" val="32"/>
       <a name="label" val="B"/>
-    </comp>
-    <comp lib="4" loc="(230,490)" name="Register">
-      <a name="width" val="1"/>
-      <a name="label" val="IE"/>
     </comp>
     <comp lib="0" loc="(860,530)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -665,10 +669,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="text" val="00 = RX"/>
     </comp>
     <comp loc="(300,140)" name="ALU"/>
-    <comp lib="0" loc="(210,510)" name="Tunnel">
-      <a name="facing" val="north"/>
-      <a name="label" val="Clock"/>
-    </comp>
     <comp lib="2" loc="(870,250)" name="Multiplexer">
       <a name="facing" val="south"/>
       <a name="select" val="2"/>
