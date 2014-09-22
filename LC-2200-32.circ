@@ -1015,13 +1015,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(500,110)" to="(520,110)"/>
     <wire from="(530,530)" to="(750,530)"/>
     <wire from="(630,200)" to="(630,300)"/>
-    <wire from="(150,120)" to="(170,120)"/>
     <wire from="(520,100)" to="(720,100)"/>
     <wire from="(370,550)" to="(380,550)"/>
     <wire from="(530,470)" to="(530,530)"/>
     <wire from="(160,140)" to="(170,140)"/>
     <wire from="(680,140)" to="(680,200)"/>
-    <wire from="(100,120)" to="(110,120)"/>
     <wire from="(520,590)" to="(520,600)"/>
     <wire from="(550,340)" to="(600,340)"/>
     <wire from="(220,90)" to="(220,100)"/>
@@ -1160,6 +1158,10 @@ a0211 840 84053 8414 2115 20080 84057 8418
       <a name="label" val="LdIR"/>
       <a name="labelloc" val="east"/>
     </comp>
+    <comp lib="0" loc="(170,120)" name="Constant">
+      <a name="width" val="6"/>
+      <a name="value" val="0x0"/>
+    </comp>
     <comp lib="0" loc="(740,320)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -1267,11 +1269,6 @@ a0211 840 84053 8414 2115 20080 84057 8418
     <comp lib="0" loc="(490,600)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="Z"/>
-    </comp>
-    <comp lib="0" loc="(150,120)" name="Bit Extender">
-      <a name="in_width" val="1"/>
-      <a name="out_width" val="6"/>
-      <a name="type" val="sign"/>
     </comp>
     <comp lib="0" loc="(740,360)" name="Pin">
       <a name="facing" val="west"/>
@@ -2050,20 +2047,21 @@ a0211 840 84053 8414 2115 20080 84057 8418
     <appear>
       <path d="M61,56 Q65,66 69,56" fill="none" stroke="#808080" stroke-width="2"/>
       <rect fill="none" height="35" stroke="#000000" stroke-width="2" width="30" x="50" y="55"/>
-      <circ-port height="10" pin="590,150" width="10" x="45" y="55"/>
+      <circ-port height="10" pin="690,220" width="10" x="45" y="55"/>
       <circ-port height="8" pin="80,360" width="8" x="76" y="76"/>
       <circ-port height="8" pin="80,390" width="8" x="46" y="76"/>
       <circ-port height="10" pin="430,390" width="10" x="65" y="85"/>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
     </appear>
-    <wire from="(80,360)" to="(400,360)"/>
+    <wire from="(570,220)" to="(570,230)"/>
+    <wire from="(370,290)" to="(370,360)"/>
+    <wire from="(650,230)" to="(650,240)"/>
     <wire from="(590,340)" to="(640,340)"/>
     <wire from="(450,220)" to="(450,230)"/>
     <wire from="(170,230)" to="(220,230)"/>
-    <wire from="(540,220)" to="(600,220)"/>
     <wire from="(430,360)" to="(430,370)"/>
     <wire from="(420,350)" to="(420,360)"/>
-    <wire from="(600,150)" to="(600,220)"/>
+    <wire from="(370,290)" to="(490,290)"/>
     <wire from="(530,290)" to="(570,290)"/>
     <wire from="(370,240)" to="(370,260)"/>
     <wire from="(600,280)" to="(640,280)"/>
@@ -2072,29 +2070,51 @@ a0211 840 84053 8414 2115 20080 84057 8418
     <wire from="(400,360)" to="(400,380)"/>
     <wire from="(450,260)" to="(450,340)"/>
     <wire from="(180,210)" to="(220,210)"/>
+    <wire from="(490,250)" to="(590,250)"/>
     <wire from="(580,300)" to="(580,320)"/>
     <wire from="(410,220)" to="(450,220)"/>
     <wire from="(440,210)" to="(480,210)"/>
+    <wire from="(80,360)" to="(370,360)"/>
     <wire from="(590,300)" to="(590,340)"/>
     <wire from="(440,110)" to="(440,210)"/>
     <wire from="(260,220)" to="(350,220)"/>
     <wire from="(80,390)" to="(110,390)"/>
     <wire from="(450,230)" to="(480,230)"/>
+    <wire from="(570,230)" to="(590,230)"/>
     <wire from="(170,230)" to="(170,330)"/>
     <wire from="(380,220)" to="(410,220)"/>
+    <wire from="(370,360)" to="(400,360)"/>
     <wire from="(410,220)" to="(410,330)"/>
     <wire from="(330,230)" to="(350,230)"/>
     <wire from="(540,280)" to="(570,280)"/>
     <wire from="(400,380)" to="(420,380)"/>
+    <wire from="(540,220)" to="(570,220)"/>
     <wire from="(520,220)" to="(540,220)"/>
+    <wire from="(620,240)" to="(650,240)"/>
+    <wire from="(570,220)" to="(660,220)"/>
+    <wire from="(490,250)" to="(490,290)"/>
     <wire from="(420,360)" to="(430,360)"/>
     <wire from="(450,340)" to="(590,340)"/>
     <wire from="(540,220)" to="(540,280)"/>
     <wire from="(370,260)" to="(450,260)"/>
     <wire from="(640,280)" to="(640,340)"/>
     <wire from="(570,320)" to="(580,320)"/>
-    <wire from="(590,150)" to="(600,150)"/>
+    <wire from="(650,230)" to="(660,230)"/>
+    <comp lib="0" loc="(670,240)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="CLK"/>
+    </comp>
     <comp lib="0" loc="(330,230)" name="Constant"/>
+    <comp lib="4" loc="(690,220)" name="Register">
+      <a name="width" val="1"/>
+      <a name="label" val="INT"/>
+    </comp>
+    <comp lib="0" loc="(690,220)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="IntOut"/>
+      <a name="labelloc" val="east"/>
+    </comp>
     <comp lib="0" loc="(530,290)" name="Constant"/>
     <comp lib="3" loc="(260,220)" name="Adder">
       <a name="width" val="11"/>
@@ -2112,10 +2132,6 @@ a0211 840 84053 8414 2115 20080 84057 8418
     </comp>
     <comp lib="4" loc="(380,220)" name="Register">
       <a name="width" val="11"/>
-    </comp>
-    <comp lib="0" loc="(590,150)" name="Pin">
-      <a name="output" val="true"/>
-      <a name="label" val="IntOut"/>
     </comp>
     <comp lib="0" loc="(420,350)" name="Constant">
       <a name="facing" val="south"/>
@@ -2151,6 +2167,10 @@ a0211 840 84053 8414 2115 20080 84057 8418
     <comp lib="3" loc="(520,220)" name="Comparator">
       <a name="width" val="11"/>
       <a name="mode" val="unsigned"/>
+    </comp>
+    <comp lib="1" loc="(620,240)" name="OR Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
     </comp>
     <comp lib="0" loc="(80,390)" name="Pin">
       <a name="tristate" val="false"/>
