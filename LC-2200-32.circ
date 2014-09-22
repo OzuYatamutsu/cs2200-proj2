@@ -236,8 +236,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(660,150)" to="(680,150)"/>
     <wire from="(180,510)" to="(180,610)"/>
     <wire from="(310,120)" to="(330,120)"/>
-    <wire from="(50,30)" to="(200,30)"/>
     <wire from="(440,290)" to="(460,290)"/>
+    <wire from="(50,30)" to="(200,30)"/>
     <wire from="(50,100)" to="(70,100)"/>
     <wire from="(570,180)" to="(570,300)"/>
     <wire from="(210,110)" to="(220,110)"/>
@@ -2020,6 +2020,47 @@ a0211 840 84053 8414 2115 20080 84057 8418
     <comp lib="0" loc="(330,230)" name="Constant"/>
     <comp lib="4" loc="(380,220)" name="Register">
       <a name="width" val="11"/>
+    </comp>
+  </circuit>
+  <circuit name="pc-init">
+    <a name="circuit" val="pc-init"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <wire from="(120,170)" to="(180,170)"/>
+    <wire from="(120,90)" to="(180,90)"/>
+    <wire from="(270,130)" to="(300,130)"/>
+    <wire from="(180,140)" to="(230,140)"/>
+    <wire from="(180,120)" to="(230,120)"/>
+    <wire from="(180,140)" to="(180,170)"/>
+    <wire from="(180,90)" to="(180,120)"/>
+    <comp lib="3" loc="(270,130)" name="Comparator">
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(120,170)" name="Pin">
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="PC"/>
+    </comp>
+    <comp lib="1" loc="(310,110)" name="Controlled Inverter">
+      <a name="facing" val="north"/>
+      <a name="width" val="32"/>
+      <a name="control" val="left"/>
+    </comp>
+    <comp lib="0" loc="(310,140)" name="Constant">
+      <a name="facing" val="north"/>
+      <a name="width" val="32"/>
+      <a name="value" val="0x10"/>
+    </comp>
+    <comp lib="0" loc="(120,90)" name="Constant">
+      <a name="width" val="32"/>
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="0" loc="(310,110)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="labelloc" val="east"/>
     </comp>
   </circuit>
 </project>
