@@ -182,4 +182,10 @@
 	<State name="HALT0">
 		<Goto state="HALT0"/>
 	</State>
+<!--ei(1000)-->
+	<State name="EI0">
+		<Signal name="DrEnInt"/>
+		<Signal name="LdEnInt"/>
+		<Goto state="FETCH0"/>
+	</State>
 </Microcode>
