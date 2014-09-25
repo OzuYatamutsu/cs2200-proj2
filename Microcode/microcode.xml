@@ -188,4 +188,9 @@
 		<Signal name="LdEnInt"/>
 		<Goto state="FETCH0"/>
 	</State>
+<!--di(1001)-->
+	<State name="DI0">
+		<Signal name="LdEnInt">
+		<Goto state="FETCH0">
+	</State>
 </Microcode>
