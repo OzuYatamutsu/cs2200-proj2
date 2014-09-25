@@ -11,7 +11,9 @@
 		<Signal name="RegSelLo"/>
 		<Signal name="RegSelHi"/>
 		<Signal name="WrREG"/>
+		<Goto state=""/> <!-- FIX THIS -->
 	</State>
+	
 	<State name="FETCH2" onInt="false">
 		<!-- Resume normal FETCH operation -->
 		<Signal name="DrPC"/>
