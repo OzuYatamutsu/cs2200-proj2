@@ -6,7 +6,11 @@
 		<Signal name="OpTest"/>
 	</State>
 	<State name="FETCH1" onInt="true">
-		<!-- int handler here -->
+		<!-- 1. Save PC into $k0 -->
+		<Signal name="DrPC"/>
+		<Signal name="RegSelLo"/>
+		<Signal name="RegSelHi"/>
+		<Signal name="WrREG"/>
 	</State>
 	<State name="FETCH2" onInt="false">
 		<!-- Resume normal FETCH operation -->
