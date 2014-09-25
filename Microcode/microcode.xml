@@ -1,17 +1,25 @@
 <Microcode>
 <!--FetchMacroState -->
 	<State name="FETCH0" onZ="false">
+		<!-- Check for interrupts -->
+		<Signal name="chkZ"/>
+		<Signal name="OpTest"/>
+	</State>
+	<State name="FETCH1" onInt="true">
+		<!-- int handler here -->
+	</State>
+	<State name="FETCH2" onInt="false">
+		<!-- Resume normal FETCH operation -->
 		<Signal name="DrPC"/>
 		<Signal name="LdA"/>
 		<Signal name="LdMAR"/>
-		<Goto state="FETCH1"/>
-	</State>
-	<State name="FETCH1">
+		<Goto state="FETCH3"/>
+	<State name="FETCH3">
 		<Signal name="DrMEM"/>
 		<Signal name="LdIR"/>
-		<Goto state="FETCH2"/>
+		<Goto state="FETCH4"/>
 	</State>
-	<State name="FETCH2">
+	<State name="FETCH4">
 		<Signal name="ALULo"/>
 		<Signal name="ALUHi"/>
 		<Signal name="DrALU"/>
