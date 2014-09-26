@@ -1,31 +1,40 @@
 <Microcode>
 <!--FetchMacroState -->
-	<State name="FETCH0" onZ="false">
+	<State name="FETCH0" onZ="false" onInt="true">
 		<!-- Check for interrupts -->
-		<Signal name="chkZ"/>
-		<Signal name="OpTest"/>
-	</State>
-	<State name="FETCH1" onInt="true">
 		<!-- 1. Save PC into $k0 -->
 		<Signal name="DrPC"/>
 		<Signal name="RegSelLo"/>
 		<Signal name="RegSelHi"/>
 		<Signal name="WrREG"/>
-		<Goto state=""/> <!-- FIX THIS -->
+		<!-- 2. Disable interrupts -->
+		<Goto state="DI0"/>
 	</State>
-	
-	<State name="FETCH2" onInt="false">
+	<State name="FETCH1">
+		<!-- 3. Send IntAck, index into IVT -->
+		<Signal name="IntAck"/>
+		<!-- Index is now on bus -->
+		<Signal name="LdMAR"/>
+		<Goto state="FETCH2"/>
+	</State>
+	<State name="FETCH2">
+		<!-- Load value from IVT into PC -->
+		<Signal name="DrMEM"/>
+		<Signal name="LdPC"/>
+		<Goto state="FETCH0"/>
+	</State>
+	<State name="FETCH3" onInt="false">
 		<!-- Resume normal FETCH operation -->
 		<Signal name="DrPC"/>
 		<Signal name="LdA"/>
 		<Signal name="LdMAR"/>
-		<Goto state="FETCH3"/>
-	<State name="FETCH3">
+		<Goto state="FETCH4"/>
+	<State name="FETCH4">
 		<Signal name="DrMEM"/>
 		<Signal name="LdIR"/>
-		<Goto state="FETCH4"/>
+		<Goto state="FETCH5"/>
 	</State>
-	<State name="FETCH4">
+	<State name="FETCH5">
 		<Signal name="ALULo"/>
 		<Signal name="ALUHi"/>
 		<Signal name="DrALU"/>
@@ -191,7 +200,7 @@
 <!--di(1001)-->
 	<State name="DI0">
 		<Signal name="LdEnInt">
-		<Goto state="FETCH0">
+		<Goto state="FETCH1">
 	</State>
 <!--reti(1010)-->
 	<State name="RETI0">
