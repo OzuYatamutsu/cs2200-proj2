@@ -193,7 +193,7 @@
 		<Signal name="LdEnInt">
 		<Goto state="FETCH0">
 	</State>
-<!--RETI(1010)-->
+<!--reti(1010)-->
 	<State name="RETI0">
 		<Signal name="RegSelLo"/>
 		<Signal name="RegSelHi"/>
