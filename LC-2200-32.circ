@@ -1098,12 +1098,12 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="addrWidth" val="6"/>
       <a name="dataWidth" val="28"/>
       <a name="contents">addr/data: 6 28
-1800000 6202 600903 801080 1a0205 6 825 84048
-108049 20100 8404b 840c 20100 8404e 10804f 220100
-a0211 840 84053 8414 2115 20080 84057 8418
-2119 40040 405b 8805c 41011d 1000000 421f 8420
-900 c062 404123 600100 c065 400100 180862 27
-67 a7 127 227
+1a0222 8002002 880 6204 1085 e00900 84047 108048
+20100 8404a 10804b 220100 8404d 840e 20100 84050
+8411 2112 20080 84054 8415 2116 40040 4058
+88059 41011a 1000000 421c 841d 900 a021f 840
+20 6000000 2000001 180861 4*0 67 a7 127
+227
 </a>
     </comp>
     <comp lib="0" loc="(60,540)" name="Constant">
@@ -1117,7 +1117,7 @@ a0211 840 84053 8414 2115 20080 84057 8418
       <a name="addrWidth" val="2"/>
       <a name="dataWidth" val="6"/>
       <a name="contents">addr/data: 2 6
-0
+3
 </a>
     </comp>
     <comp lib="0" loc="(740,200)" name="Pin">
@@ -1125,6 +1125,9 @@ a0211 840 84053 8414 2115 20080 84057 8418
       <a name="output" val="true"/>
       <a name="label" val="LdIR"/>
       <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(154,513)" name="Text">
+      <a name="text" val="Interrupt ROM (IntROM)"/>
     </comp>
     <comp lib="0" loc="(740,320)" name="Pin">
       <a name="facing" val="west"/>
@@ -1137,6 +1140,9 @@ a0211 840 84053 8414 2115 20080 84057 8418
       <a name="output" val="true"/>
       <a name="label" val="LdB"/>
       <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(660,424)" name="Text">
+      <a name="text" val="OpCheck ROM (SEQROM)"/>
     </comp>
     <comp lib="0" loc="(570,470)" name="Pin">
       <a name="width" val="4"/>
@@ -1175,11 +1181,11 @@ a0211 840 84053 8414 2115 20080 84057 8418
       <a name="label" val="DrPC"/>
       <a name="labelloc" val="east"/>
     </comp>
+    <comp lib="6" loc="(650,555)" name="Text">
+      <a name="text" val="ChkZ ROM (BEQROM)"/>
+    </comp>
     <comp lib="0" loc="(750,380)" name="Tunnel">
       <a name="label" val="OpTest"/>
-    </comp>
-    <comp lib="6" loc="(628,424)" name="Text">
-      <a name="text" val="OpCheck ROM"/>
     </comp>
     <comp lib="0" loc="(740,160)" name="Pin">
       <a name="facing" val="west"/>
@@ -1201,8 +1207,8 @@ a0211 840 84053 8414 2115 20080 84057 8418
       <a name="addrWidth" val="4"/>
       <a name="dataWidth" val="6"/>
       <a name="contents">addr/data: 4 6
-7 d a 12 16 1a 10 27
-2a 2b 21 24 26 28 29
+6 9 c f 13 17 1e 20
+25 27 21 22 23 24 26
 </a>
     </comp>
     <comp lib="0" loc="(540,600)" name="Ground"/>
@@ -1220,14 +1226,11 @@ a0211 840 84053 8414 2115 20080 84057 8418
       <a name="tristate" val="false"/>
       <a name="label" val="INT"/>
     </comp>
-    <comp lib="6" loc="(620,555)" name="Text">
-      <a name="text" val="ChkZ ROM"/>
-    </comp>
     <comp lib="4" loc="(730,600)" name="ROM">
       <a name="addrWidth" val="2"/>
       <a name="dataWidth" val="6"/>
       <a name="contents">addr/data: 2 6
-0 1e
+0 1b
 </a>
     </comp>
     <comp lib="6" loc="(356,145)" name="Text">
@@ -1238,9 +1241,6 @@ a0211 840 84053 8414 2115 20080 84057 8418
       <a name="output" val="true"/>
       <a name="label" val="DrALU"/>
       <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="6" loc="(125,514)" name="Text">
-      <a name="text" val="Interrupt ROM"/>
     </comp>
     <comp lib="0" loc="(740,360)" name="Pin">
       <a name="facing" val="west"/>
