@@ -63,18 +63,18 @@ factorial:	addi    $sp, $sp, -1    ! push RA
                 beq     $a0, $s1, base_one
                 beq     $zero, $zero, recurse
                 
-    base_zero:  addi    $v0, $zero, 1   ! 0! = 1
+    base_zero:  addi    $v0, $zero, 1   ! fact(0) = 1
                 beq     $zero, $zero, done
 
-    base_one:   addi    $v0, $zero, 1   ! 1! = 1
+    base_one:   addi    $v0, $zero, 1   ! fact(1) = 1
                 beq     $zero, $zero, done
 
     recurse:    add     $s1, $a0, $zero     ! save n in s1
-                addi    $a0, $a0, -1        ! n! = n * (n-1)!
+                addi    $a0, $a0, -1        ! fact(n) = n * fact(n-1)
                 la      $at, factorial
                 jalr    $at, $ra
 
-                add     $s0, $v0, $zero     ! use s0 to store (n-1)!
+                add     $s0, $v0, $zero     ! use s0 to store fact(n-1)
                 add     $v0, $zero, $zero   ! use v0 as sum register
         mul:    beq     $s1, $zero, done    ! use s1 as counter (from n to 0)
                 add     $v0, $v0, $s0
