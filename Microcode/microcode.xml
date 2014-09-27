@@ -56,7 +56,7 @@
 	<State name="ADD1">
 		<Signal name="LdB"/>
 		<Signal name="DrReg"/>
-		<Signal name = "RegSelHi"/>
+		<Signal name="RegSelHi"/>
 		<Goto state="ADD2"/>
 	</State>
 	<State name="ADD2">
@@ -247,8 +247,28 @@
 	</State>
 <!--bonr(1100)-->
 	<State name="BONR0">
-		<!-- Placeholder -->
+		<!-- bonr is an R-type instruction (RX, RY, RZ). 
+		bonr subtracts the value of RZ from RY and pushes 
+		the result to RX (RX<-RY+RZ).
+		
+		Typical usage: bonr $s0, $s1, $s2 ! $s0=$s1-$s2 -->
+		<Signal name="RegSelLo"/>
+		<Signal name="DrReg"/>
+		<Signal name="LdA"/>
+		<Goto state="BONR1"/>
+	</State>
+	<State name="BONR1">
+		<Signal name="RegSelHi"/>
+		<Signal name="DrReg"/>
+		<Signal name="LdB"/>
+		<Goto state="BONR2"/>
+	</State>
+	<State name="BONR2">
+		<Signal name="ALUHi"/>
+		<Signal name="DrALU"/>
+		<Signal name="WrREG"/>
 		<Goto state="FETCH0"/>
+	</State>
 	</State>
 <!--bonj(1101)-->
 	<State name="BONJ0">
