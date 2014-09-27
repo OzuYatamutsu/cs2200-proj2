@@ -277,7 +277,10 @@
 	</State>
 <!--bono(1110)-->
 	<State name="BONO0">
-		<!-- Placeholder -->
+		<!-- bono is an O-type instruction. 
+		bono resets the PC. -->
+		<Signal name="DrOFF"/>
+		<Signal name="LdPC"/>
 		<Goto state="FETCH0"/>
 	</State>
 </Microcode>
