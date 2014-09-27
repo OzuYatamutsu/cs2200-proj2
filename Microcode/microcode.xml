@@ -25,21 +25,21 @@
 		<!-- Load value from IVT into PC -->
 		<Signal name="DrMEM"/>
 		<Signal name="LdPC"/>
-		<Goto state="FETCH3"/>
+		<Goto state="FETCH4"/>
 	</State>
-	<State name="FETCH3" onInt="false">
+	<State name="FETCH4" onInt="false">
 		<!-- Resume normal FETCH operation -->
 		<Signal name="DrPC"/>
 		<Signal name="LdA"/>
 		<Signal name="LdMAR"/>
-		<Goto state="FETCH4"/>
-	</State>
-	<State name="FETCH4">
-		<Signal name="DrMEM"/>
-		<Signal name="LdIR"/>
 		<Goto state="FETCH5"/>
 	</State>
 	<State name="FETCH5">
+		<Signal name="DrMEM"/>
+		<Signal name="LdIR"/>
+		<Goto state="FETCH6"/>
+	</State>
+	<State name="FETCH6">
 		<Signal name="ALULo"/>
 		<Signal name="ALUHi"/>
 		<Signal name="DrALU"/>
