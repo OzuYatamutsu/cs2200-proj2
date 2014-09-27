@@ -217,7 +217,32 @@
 	</State>
 <!--boni(1011)-->
 	<State name="BONI0">
-		<!-- Placeholder -->
+		<!-- boni is an I-type instruction (RX, offset+RY). 
+		boni assumes RY contains a memory location. It increments 
+		RY by (offset), then pushes the value of RX into the 
+		memory location referred to by the new value of RY.
+		
+		Typical usage: boni $s0, -1($sp) ! Pushes s0 into the stack -->
+		<Signal name="RegSelLo"/>
+		<Signal name="DrReg"/>
+		<Signal name="LdA"/>
+		<Goto state="BONI1"/>
+	</State>
+	<State name="BONI1">
+		<Signal name="DrOFF"/>
+		<Signal name="LdB"/>
+		<Goto state="BONI2"/>		
+	</State>
+	<State name="BONI2">
+		<Signal name="RegSelLo"/>
+		<Signal name="DrALU"/>
+		<Signal name="WrREG"/>
+		<Signal name="LdMAR"/>
+		<Goto state="BONI3"/>
+	</State>
+	<State name="BONI3">
+		<Signal name="DrREG"/>
+		<Signal name="WrMEM"/>
 		<Goto state="FETCH0"/>
 	</State>
 <!--bonr(1100)-->
