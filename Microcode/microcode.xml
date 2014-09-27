@@ -269,7 +269,6 @@
 		<Signal name="WrREG"/>
 		<Goto state="FETCH0"/>
 	</State>
-	</State>
 <!--bonj(1101)-->
 	<State name="BONJ0">
 		<!-- bonj is a J-type instruction (RX, RY).
