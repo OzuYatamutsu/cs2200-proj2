@@ -1,7 +1,11 @@
 <Microcode>
 <!--FetchMacroState -->
-	<State name="FETCH0" onZ="false" onInt="true">
+	<State name="FETCH0" onZ="false">
 		<!-- Check for interrupts -->
+		<Signal name="chkZ"/>
+		<Signal name="OpTest"/>
+	</State>
+	<State name="FETCH1" onInt="true">
 		<!-- 1. Save PC into $k0 -->
 		<Signal name="DrPC"/>
 		<Signal name="RegSelLo"/>
@@ -10,18 +14,18 @@
 		<!-- 2. Disable interrupts -->
 		<Goto state="DI0"/>
 	</State>
-	<State name="FETCH1">
+	<State name="FETCH2">
 		<!-- 3. Send IntAck, index into IVT -->
 		<Signal name="IntAck"/>
 		<!-- Index is now on bus -->
 		<Signal name="LdMAR"/>
-		<Goto state="FETCH2"/>
+		<Goto state="FETCH3"/>
 	</State>
-	<State name="FETCH2">
+	<State name="FETCH3">
 		<!-- Load value from IVT into PC -->
 		<Signal name="DrMEM"/>
 		<Signal name="LdPC"/>
-		<Goto state="FETCH0"/>
+		<Goto state="FETCH3"/>
 	</State>
 	<State name="FETCH3" onInt="false">
 		<!-- Resume normal FETCH operation -->
@@ -201,7 +205,7 @@
 <!--di(1001)-->
 	<State name="DI0">
 		<Signal name="LdEnInt"/>
-		<Goto state="FETCH1"/>
+		<Goto state="FETCH2"/>
 	</State>
 <!--reti(1010)-->
 	<State name="RETI0">
