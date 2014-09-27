@@ -100,7 +100,7 @@ ti_inthandler:
 	! 3. Handler program logic
 	! To save time, only load memlocation of minutes/hours if needed
 	la $s0, seconds				! Load memlocation of seconds variable
-	lw $a0, 0x00(seconds)		! Load value of seconds variable into $s1
+	lw $a0, 0x00($s0)			! Load value of seconds variable into $a0
 	addi $s1, $s1, 1			! seconds = seconds + 1
 	addi $a1, $zero, -60		! a1 = -60		
 	add $a1, $s1, $a1			! a1 = seconds - 60
@@ -108,7 +108,14 @@ ti_inthandler:
 	sw $s1, 0x00($a0)			! Otherwise, push seconds back to memory
 	reti						! We are done (case 1)
 inc_mins: sw $zero, 0x00($a0)	! First, push seconds=0 into memory
-	
+	la $s0, minutes				! Load memlocation of minutes variable
+	lw $a0, 0x00($s0)			! Load value of minutes variable into $a0
+	addi $s1, $s1, 1			! minutes = minutes + 1
+	addi $a1, $zero, -60		! a1 = -60		
+	add $a1, $s1, $a1			! a1 = minutes - 60
+	beq $zero, $a1, inc_hours	! If a1 = 0, need to increment hours
+	sw $s1, 0x00($a0)			! Otherwise, push minutes back to memory
+	reti						! We are done (case 2)
 
 
 
