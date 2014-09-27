@@ -98,6 +98,11 @@ ti_inthandler:
 	! 2. Enable interrupts
 	ei
 	! 3. Handler program logic
+	! Since interrupt handler expected to fire every second,
+	! increment second variable first, convert to min/hours later
+	la $s0, seconds			! Load memlocation of seconds variable
+	lw $s1, 0x00(seconds)	! Load value of seconds variable into $s1
+	addi $s1, $s1, 1		! seconds = seconds + 1
 	
 	
 
@@ -112,3 +117,9 @@ ti_inthandler:
 
 
 stack:	.fill 0xA0000000
+
+! Below for interrupt handler
+seconds: .fill 0xFFFFFFFC
+minutes: .fill 0xFFFFFFFD
+hours: .fill 0xFFFFFFFE
+sixty: .fill 0x0000003C
