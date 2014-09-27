@@ -116,7 +116,12 @@ inc_mins: sw $zero, 0x00($a0)	! First, push seconds=0 into memory
 	beq $zero, $a1, inc_hours	! If a1 = 0, need to increment hours
 	sw $s1, 0x00($a0)			! Otherwise, push minutes back to memory
 	reti						! We are done (case 2)
-
+inc_hours: sw $zero, 0x00($a0)	! First, push minutes=0 into memory
+	la $s0, hours				! Load memlocation of hours variable
+	lw $a0, 0x00($s0)			! Load value of hours variable into $a0
+	addi $s1, $s1, 1			! hours = hours + 1
+	sw $s1, 0x00($a0)			! Push hours back to memory
+	reti						! We are done (case 3)
 
 
 
