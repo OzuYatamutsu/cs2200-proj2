@@ -272,7 +272,24 @@
 	</State>
 <!--bonj(1101)-->
 	<State name="BONJ0">
-		<!-- Placeholder -->
+		<!-- bonj is a J-type instruction (RX, RY).
+		bonj is a jump instruction that saves the return address
+		(PC+1) into the memory location pointed to by RY.
+		
+		Typical usage: bonj $at, $sp ! PC=$at, Mem[$sp]=return_address -->
+		<Signal name="RegSelLo"/>
+		<Signal name="DrREG"/>
+		<Signal name="LdMAR"/>
+		<Goto state="BONJ1"/>
+	</State>
+	<State name="BONJ1">
+		<Signal name="DrPC"/>
+		<Signal name="WrMEM"/>
+		<Goto state="BONJ2"/>
+	</State>
+	<State name="BONJ2">
+		<Signal name="DrReg"/>
+		<Signal name="LdPC"/>
 		<Goto state="FETCH0"/>
 	</State>
 <!--bono(1110)-->
