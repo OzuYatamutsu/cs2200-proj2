@@ -41,7 +41,8 @@ main:           la $sp, stack		! Initialize stack pointer
                 lw $sp, 0($sp)          
                 
                 ! Install timer interrupt handler into vector table
-                noop                    ! FIX ME
+                la $s0, ti_inthandler   ! Load address of int handler to s0
+				sw $s0, 0x1($zero)		! Save handler location at 0x1
                 ei                      ! Don't forget to enable interrupts...
 
 		la $at, factorial	! load address of factorial label into $at
@@ -92,7 +93,13 @@ factorial:	addi    $sp, $sp, -1    ! push RA
                 jalr    $ra, $zero
 
 ti_inthandler:
-    noop        ! FIXME
+    ! 1. Save state
+	! (Insert save state code here)
+	! 2. Enable interrupts
+	ei
+	! 3. Handler program logic
+	
+	
 
 
 
