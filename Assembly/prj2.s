@@ -98,14 +98,17 @@ ti_inthandler:
 	! 2. Enable interrupts
 	ei
 	! 3. Handler program logic
-	! Since interrupt handler expected to fire every second,
-	! increment second variable first, convert to min/hours later
-	la $s0, seconds			! Load memlocation of seconds variable
-	lw $s1, 0x00(seconds)	! Load value of seconds variable into $s1
-	addi $s1, $s1, 1		! seconds = seconds + 1
+	! To save time, only load memlocation of minutes/hours if needed
+	la $s0, seconds				! Load memlocation of seconds variable
+	lw $a0, 0x00(seconds)		! Load value of seconds variable into $s1
+	addi $s1, $s1, 1			! seconds = seconds + 1
+	addi $a1, $zero, -60		! a1 = -60		
+	add $a1, $s1, $a1			! a1 = seconds - 60
+	beq $zero, $a1, inc_mins	! If a1 = 0, need to increment minutes
+	sw $s1, 0x00($a0)			! Otherwise, push seconds back to memory
+	reti						! We are done (case 1)
+inc_mins: sw $zero, 0x00($a0)	! First, push seconds=0 into memory
 	
-	
-
 
 
 
@@ -122,4 +125,3 @@ stack:	.fill 0xA0000000
 seconds: .fill 0xFFFFFFFC
 minutes: .fill 0xFFFFFFFD
 hours: .fill 0xFFFFFFFE
-sixty: .fill 0x0000003C
