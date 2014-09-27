@@ -738,11 +738,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="width" val="2"/>
       <a name="label" val="FUNC"/>
     </comp>
-    <comp lib="0" loc="(940,30)" name="Constant">
-      <a name="facing" val="west"/>
-      <a name="width" val="32"/>
-      <a name="value" val="0x0"/>
-    </comp>
     <comp lib="3" loc="(850,750)" name="Comparator">
       <a name="width" val="32"/>
       <a name="mode" val="unsigned"/>
