@@ -222,7 +222,7 @@
 		RY by (offset), then pushes the value of RX into the 
 		memory location referred to by the new value of RY.
 		
-		Typical usage: boni $s0, -1($sp) ! Pushes s0 into the stack -->
+		Typical usage: boni $s0, $sp, -1 ! Pushes s0 into the stack -->
 		<Signal name="RegSelLo"/>
 		<Signal name="DrReg"/>
 		<Signal name="LdA"/>

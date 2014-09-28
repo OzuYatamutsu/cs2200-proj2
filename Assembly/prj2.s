@@ -96,20 +96,20 @@ ti_inthandler:
     ! 1. Save state
 	! (Use boni to push into stack and increment stack pointer)
 	! Save: $fp, $at, $a0-4, $s0-3, $k0, $ra
-	boni $fp, -1($sp)
-	add $fp, $sp, 1 	! Set new frame pointer
-	boni $at, -1($sp)
-	boni $a0, -1($sp)
-	boni $a1, -1($sp)
-	boni $a2, -1($sp)
-	boni $a3, -1($sp)
-	boni $a4, -1($sp)
-	boni $s0, -1($sp)
-	boni $s1, -1($sp)
-	boni $s2, -1($sp)
-	boni $s3, -1($sp)
-	boni $k0, -1($sp)
-	boni $ra, -1($sp)
+	boni $fp, $sp, -1
+	addi $fp, $sp, 1 	! Set new frame pointer
+	boni $at, $sp, -1
+	boni $a0, $sp, -1
+	boni $a1, $sp, -1
+	boni $a2, $sp, -1
+	boni $a3, $sp, -1
+	boni $a4, $sp, -1
+	boni $s0, $sp, -1
+	boni $s1, $sp, -1
+	boni $s2, $sp, -1
+	boni $s3, $sp, -1
+	boni $k0, $sp, -1
+	boni $ra, $sp, -1
 	! 2. Enable interrupts
 	ei
 	! 3. Handler program logic
