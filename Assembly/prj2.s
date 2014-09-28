@@ -94,7 +94,22 @@ factorial:	addi    $sp, $sp, -1    ! push RA
 
 ti_inthandler:
     ! 1. Save state
-	! (Insert save state code here)
+	! (Use boni to push into stack and increment stack pointer)
+	! Save: $fp, $at, $a0-4, $s0-3, $k0, $ra
+	boni $fp, -1($sp)
+	add $fp, $sp, 1 	! Set new frame pointer
+	boni $at, -1($sp)
+	boni $a0, -1($sp)
+	boni $a1, -1($sp)
+	boni $a2, -1($sp)
+	boni $a3, -1($sp)
+	boni $a4, -1($sp)
+	boni $s0, -1($sp)
+	boni $s1, -1($sp)
+	boni $s2, -1($sp)
+	boni $s3, -1($sp)
+	boni $k0, -1($sp)
+	boni $ra, -1($sp)
 	! 2. Enable interrupts
 	ei
 	! 3. Handler program logic
