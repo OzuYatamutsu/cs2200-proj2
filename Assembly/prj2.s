@@ -46,7 +46,7 @@ main:           la $sp, stack		! Initialize stack pointer
                 ei                      ! Don't forget to enable interrupts...
 
 		la $at, factorial	! load address of factorial label into $at
-		addi $a0, $zero, 2 	! $a0 = 5, the number to factorialize
+		addi $a0, $zero, 3 	! $a0 = 5, the number to factorialize
 		jalr $at, $ra		! jump to factorial, set $ra to return addr
 		halt		        ! when we return, just halt
 
@@ -82,10 +82,10 @@ factorial:	addi    $sp, $sp, -1    ! push RA
                 addi    $s1, $s1, -1
                 beq     $zero, $zero, mul
 
-    done:       lw      $s0, 0($sp)     ! pop s0
-                addi    $sp, $sp, 1
-                lw      $s1, 0($sp)     ! pop s1
-                addi    $sp, $sp, 1
+    done:   	lw  $s1, 0($sp)			! pop s1
+				addi    $sp, $sp, 1
+				lw  $s0, 0($sp)			! pop s0
+				addi    $sp, $sp, 1
                 lw      $a0, 0($sp)     ! pop a0
                 addi    $sp, $sp, 1
                 lw      $ra, 0($sp)     ! pop RA
@@ -155,9 +155,9 @@ restore: addi $sp, $sp, 14		! Prepare to restore 14 registers
 	lw $ra, -14($sp)			! Restore $ra
 	reti						! We are done, return to caller
 
-stack:	.fill 0xA0000000
+stack: .fill 0xA00000
 
 ! Below for interrupt handler
-seconds: .fill 0xFFFFFFFC
-minutes: .fill 0xFFFFFFFD
-hours: .fill 0xFFFFFFFE
+seconds: .fill 0xFFFFFD
+minutes: .fill 0xFFFFFE
+hours: .fill 0xFFFFFF
