@@ -46,7 +46,7 @@ main:           la $sp, stack		! Initialize stack pointer
                 ei                      ! Don't forget to enable interrupts...
 
 		la $at, factorial	! load address of factorial label into $at
-		addi $a0, $zero, 5 	! $a0 = 5, the number to factorialize
+		addi $a0, $zero, 2 	! $a0 = 5, the number to factorialize
 		jalr $at, $ra		! jump to factorial, set $ra to return addr
 		halt		        ! when we return, just halt
 
@@ -95,10 +95,11 @@ factorial:	addi    $sp, $sp, -1    ! push RA
 ti_inthandler:
     ! 1. Save state
 	! (Use boni to push into stack and increment stack pointer)
-	! Save: $fp, $at, $a0-4, $s0-3, $k0, $ra: 13 registers
+	! Save: $fp, $at, $v0, $a0-4, $s0-3, $k0, $ra: 14 registers
 	boni $fp, $sp, -1
 	addi $fp, $sp, 1 	! Set new frame pointer
 	boni $at, $sp, -1
+	boni $v0, $sp, -1
 	boni $a0, $sp, -1
 	boni $a1, $sp, -1
 	boni $a2, $sp, -1
@@ -137,20 +138,21 @@ inc_hours: sw $zero, 0x00($a0)	! First, push minutes=0 into memory
 	addi $s1, $s1, 1			! hours = hours + 1
 	sw $s1, 0x00($a0)			! Push hours back to memory
 	beq $zero, $zero, restore	! Unconditionally branch to restore state
-restore: addi $sp, $sp, 13		! Prepare to restore 13 registers
+restore: addi $sp, $sp, 14		! Prepare to restore 14 registers
 	lw $fp, -1($sp)				! Restore old FP
 	lw $at, -2($sp)				! Restore $at
-	lw $a0, -3($sp)				! Restore $a0
-	lw $a1, -4($sp)				! Restore $a1
-	lw $a2, -5($sp)				! Restore $a2
-	lw $a3, -6($sp)				! Restore $a3
-	lw $a4, -7($sp)				! Restore $a4
-	lw $s0, -8($sp)				! Restore $s0
-	lw $s1, -9($sp)				! Restore $s1
-	lw $s2, -10($sp)			! Restore $s2
-	lw $s3, -11($sp)			! Restore $s3
-	lw $k0, -12($sp)			! Restore $k0
-	lw $ra, -13($sp)			! Restore $ra
+	lw $v0, -3($sp)				! Restore $v0
+	lw $a0, -4($sp)				! Restore $a0
+	lw $a1, -5($sp)				! Restore $a1
+	lw $a2, -6($sp)				! Restore $a2
+	lw $a3, -7($sp)				! Restore $a3
+	lw $a4, -8($sp)				! Restore $a4
+	lw $s0, -9($sp)				! Restore $s0
+	lw $s1, -10($sp)			! Restore $s1
+	lw $s2, -11($sp)			! Restore $s2
+	lw $s3, -12($sp)			! Restore $s3
+	lw $k0, -13($sp)			! Restore $k0
+	lw $ra, -14($sp)			! Restore $ra
 	reti						! We are done, return to caller
 
 stack:	.fill 0xA0000000
