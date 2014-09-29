@@ -46,7 +46,7 @@ main:           la $sp, stack		! Initialize stack pointer
                 ei                      ! Don't forget to enable interrupts...
 
 		la $at, factorial	! load address of factorial label into $at
-		addi $a0, $zero, 3 	! $a0 = 5, the number to factorialize
+		addi $a0, $zero, 5 	! $a0 = 5, the number to factorialize
 		jalr $at, $ra		! jump to factorial, set $ra to return addr
 		halt		        ! when we return, just halt
 
@@ -116,27 +116,27 @@ ti_inthandler:
 	! 3. Handler program logic
 	! To save time, only load memlocation of minutes/hours if needed
 	la $s0, seconds				! Load memlocation of seconds variable
-	lw $a0, 0x00($s0)			! Load value of seconds variable into $a0
+	lw $s1, 0x00($s0)			! Load value of seconds variable into $a0
 	addi $s1, $s1, 1			! seconds = seconds + 1
 	addi $a1, $zero, -60		! a1 = -60		
 	add $a1, $s1, $a1			! a1 = seconds - 60
 	beq $zero, $a1, inc_mins	! If a1 = 0, need to increment minutes
-	sw $s1, 0x00($a0)			! Otherwise, push seconds back to memory
+	sw $s1, 0x00($s0)			! Otherwise, push seconds back to memory
 	beq $zero, $zero, restore	! Unconditionally branch to restore state
 inc_mins: sw $zero, 0x00($a0)	! First, push seconds=0 into memory
 	la $s0, minutes				! Load memlocation of minutes variable
-	lw $a0, 0x00($s0)			! Load value of minutes variable into $a0
+	lw $s1, 0x00($s0)			! Load value of minutes variable into $a0
 	addi $s1, $s1, 1			! minutes = minutes + 1
 	addi $a1, $zero, -60		! a1 = -60		
 	add $a1, $s1, $a1			! a1 = minutes - 60
 	beq $zero, $a1, inc_hours	! If a1 = 0, need to increment hours
-	sw $s1, 0x00($a0)			! Otherwise, push minutes back to memory
+	sw $s1, 0x00($s0)			! Otherwise, push minutes back to memory
 	beq $zero, $zero, restore	! Unconditionally branch to restore state
 inc_hours: sw $zero, 0x00($a0)	! First, push minutes=0 into memory
 	la $s0, hours				! Load memlocation of hours variable
-	lw $a0, 0x00($s0)			! Load value of hours variable into $a0
+	lw $s1, 0x00($s0)			! Load value of hours variable into $a0
 	addi $s1, $s1, 1			! hours = hours + 1
-	sw $s1, 0x00($a0)			! Push hours back to memory
+	sw $s1, 0x00($s0)			! Push hours back to memory
 	beq $zero, $zero, restore	! Unconditionally branch to restore state
 restore: addi $sp, $sp, 14		! Prepare to restore 14 registers
 	lw $fp, -1($sp)				! Restore old FP
