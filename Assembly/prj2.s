@@ -116,7 +116,7 @@ ti_inthandler:
 	! 3. Handler program logic
 	! To save time, only load memlocation of minutes/hours if needed
 	la $s0, seconds				! Load memlocation of seconds variable
-	lw $s1, 0x00($s0)			! Load value of seconds variable into $a0
+	lw $s1, 0x00($s0)			! Load value of seconds variable into $s1
 	addi $s1, $s1, 1			! seconds = seconds + 1
 	addi $a1, $zero, -60		! a1 = -60		
 	add $a1, $s1, $a1			! a1 = seconds - 60
