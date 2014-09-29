@@ -196,18 +196,50 @@
 	<State name="HALT0">
 		<Goto state="HALT0"/>
 	</State>
-<!--ei(1000)-->
+<!--bonr(1000)-->
+	<State name="BONR0">
+		<!-- bonr is an R-type instruction (RX, RY, RZ). 
+		bonr subtracts the value of RZ from RY and pushes 
+		the result to RX (RX<-RY+RZ).
+		
+		Typical usage: bonr $s0, $s1, $s2 ! $s0=$s1-$s2 -->
+		<Signal name="RegSelLo"/>
+		<Signal name="DrReg"/>
+		<Signal name="LdA"/>
+		<Goto state="BONR1"/>
+	</State>
+	<State name="BONR1">
+		<Signal name="RegSelHi"/>
+		<Signal name="DrReg"/>
+		<Signal name="LdB"/>
+		<Goto state="BONR2"/>
+	</State>
+	<State name="BONR2">
+		<Signal name="ALUHi"/>
+		<Signal name="DrALU"/>
+		<Signal name="WrREG"/>
+		<Goto state="FETCH0"/>
+	</State>
+<!--bono(1001)-->
+	<State name="BONO0">
+		<!-- bono is an O-type instruction. 
+		bono resets the PC. -->
+		<Signal name="DrOFF"/>
+		<Signal name="LdPC"/>
+		<Goto state="FETCH0"/>
+	</State>
+<!--ei(1010)-->
 	<State name="EI0">
 		<Signal name="DrEnInt"/>
 		<Signal name="LdEnInt"/>
 		<Goto state="FETCH0"/>
 	</State>
-<!--di(1001)-->
+<!--di(1011)-->
 	<State name="DI0">
 		<Signal name="LdEnInt"/>
 		<Goto state="FETCH2"/>
 	</State>
-<!--reti(1010)-->
+<!--reti(1100)-->
 	<State name="RETI0">
 		<Signal name="RegSelLo"/>
 		<Signal name="RegSelHi"/>
@@ -215,7 +247,7 @@
 		<Signal name="LdPC"/>
 		<Goto state="EI0"/>
 	</State>
-<!--boni(1011)-->
+<!--boni(1101)-->
 	<State name="BONI0">
 		<!-- boni is an I-type instruction (RX, offset+RY). 
 		boni assumes RY contains a memory location. It increments 
@@ -245,31 +277,7 @@
 		<Signal name="WrMEM"/>
 		<Goto state="FETCH0"/>
 	</State>
-<!--bonr(1100)-->
-	<State name="BONR0">
-		<!-- bonr is an R-type instruction (RX, RY, RZ). 
-		bonr subtracts the value of RZ from RY and pushes 
-		the result to RX (RX<-RY+RZ).
-		
-		Typical usage: bonr $s0, $s1, $s2 ! $s0=$s1-$s2 -->
-		<Signal name="RegSelLo"/>
-		<Signal name="DrReg"/>
-		<Signal name="LdA"/>
-		<Goto state="BONR1"/>
-	</State>
-	<State name="BONR1">
-		<Signal name="RegSelHi"/>
-		<Signal name="DrReg"/>
-		<Signal name="LdB"/>
-		<Goto state="BONR2"/>
-	</State>
-	<State name="BONR2">
-		<Signal name="ALUHi"/>
-		<Signal name="DrALU"/>
-		<Signal name="WrREG"/>
-		<Goto state="FETCH0"/>
-	</State>
-<!--bonj(1101)-->
+<!--bonj(1110)-->
 	<State name="BONJ0">
 		<!-- bonj is a J-type instruction (RX, RY).
 		bonj is a jump instruction that saves the return address
@@ -288,14 +296,6 @@
 	</State>
 	<State name="BONJ2">
 		<Signal name="DrReg"/>
-		<Signal name="LdPC"/>
-		<Goto state="FETCH0"/>
-	</State>
-<!--bono(1110)-->
-	<State name="BONO0">
-		<!-- bono is an O-type instruction. 
-		bono resets the PC. -->
-		<Signal name="DrOFF"/>
 		<Signal name="LdPC"/>
 		<Goto state="FETCH0"/>
 	</State>
