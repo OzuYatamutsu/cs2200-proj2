@@ -12,7 +12,8 @@
 		<Signal name="RegSelHi"/>
 		<Signal name="WrREG"/>
 		<!-- 2. Disable interrupts -->
-		<Goto state="DI0"/>
+		<Signal name="LdEnInt"/>
+		<Goto state="FETCH2"/>
 	</State>
 	<State name="FETCH2">
 		<!-- 3. Send IntAck, index into IVT -->
@@ -237,7 +238,7 @@
 <!--di(1011)-->
 	<State name="DI0">
 		<Signal name="LdEnInt"/>
-		<Goto state="FETCH2"/>
+		<Goto state="FETCH0"/>
 	</State>
 <!--reti(1100)-->
 	<State name="RETI0">

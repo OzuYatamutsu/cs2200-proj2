@@ -156,6 +156,7 @@ restore: addi $sp, $sp, 14		! Prepare to restore 14 registers
 	lw $s3, -12($sp)			! Restore $s3
 	lw $k0, -13($sp)			! Restore $k0
 	lw $ra, -14($sp)			! Restore $ra
+	di							! Disable interrupts
 	reti						! We are done, return to caller
 
 stack: .fill 0xA00000
